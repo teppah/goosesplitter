@@ -8,7 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "jszip": "^3.5.0",
     "next": "9.5.3",
+    "pdf-lib": "^1.11.1",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
