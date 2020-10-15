@@ -1,7 +1,11 @@
 import Head from "next/head";
-import PDFZone from "../components/PDFZone";
+import PDFZone from "components/PDFZone";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 
 const Home = () => {
+  const [pdfData, setPdfData] = useState<Uint8Array>(null);
   return (
     <div>
       <Head>
@@ -10,8 +14,12 @@ const Home = () => {
       </Head>
       <main>
         <h1 className="title">GooseSplitter</h1>
-        <p>A tool to conveniently split scanned PDFs into individual questions for Crowdmark Submission</p>
-        <PDFZone/>
+        <p>
+          A tool to conveniently split scanned PDFs into individual questions
+          for Crowdmark Submission
+        </p>
+        <PDFZone data={pdfData} setData={setPdfData} />
+        <Viewer data={pdfData} setData={setPdfData} />
       </main>
 
       <style jsx>{`
