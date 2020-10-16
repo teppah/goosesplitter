@@ -3,6 +3,7 @@ import PDFZone from "components/PDFZone";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import FormatInput from "components/FormatInput";
+import DownloadWidget from "components/DownloadWidget";
 const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 
 const Home = () => {
@@ -26,6 +27,7 @@ const Home = () => {
             formatString={formatString}
             setFormatString={setFormatString}
           />
+          <DownloadWidget formatString={formatString} />
         </div>
         <Viewer data={pdfData} setData={setPdfData} />
       </section>
