@@ -7,8 +7,9 @@ const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 
 const Home = () => {
   const [pdfData, setPdfData] = useState<Uint8Array>(null);
+  const [formatString, setFormatString] = useState<string>(null);
   return (
-    <section className="contain">
+    <section className="layout">
       <Head>
         <title>GooseSplitter</title>
         <link rel="icon" href="/goose.png" />
@@ -21,13 +22,16 @@ const Home = () => {
       <section className="content">
         <div className="left">
           <PDFZone data={pdfData} setData={setPdfData} />
-          <FormatInput />
+          <FormatInput
+            formatString={formatString}
+            setFormatString={setFormatString}
+          />
         </div>
         <Viewer data={pdfData} setData={setPdfData} />
       </section>
 
       <style jsx>{`
-        .contain {
+        .layout {
           @apply flex flex-col items-center;
           @apply h-screen;
           width: 100%;

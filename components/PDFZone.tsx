@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
+import containerStyles from "styles/Container.module.css";
 
 const PDFZone = ({
   data,
@@ -19,30 +20,27 @@ const PDFZone = ({
     accept: ["application/pdf"],
   });
   return (
-    <div>
-      <div {...getRootProps()} className="dropzone">
-        <input {...getInputProps()}></input>
-        {isDragActive ? (
-          <p>Drop the file here</p>
-        ) : (
-          <div>
-            <p>Drag n drop here!</p>
-            <button type="button" onClick={open}>
-              Open
-            </button>
-          </div>
-        )}
-      </div>
+    <div {...getRootProps()} className={containerStyles.container}>
+      <input {...getInputProps()}></input>
+      {isDragActive ? (
+        <p>Drop the file here</p>
+      ) : (
+        <div>
+          <p>Drag n drop here!</p>
+          <button type="button" onClick={open}>
+            Open
+          </button>
+        </div>
+      )}
       <style jsx>{`
         h1 {
           @apply font-serif;
         }
         .dropzone {
           @apply p-4;
-          @apply border-solid border-4 border-red-400;
         }
         button {
-          @apply border-blue-400 border-2 rounded px-2 py-1;
+          @apply border-purple-400 border-2 rounded px-2 py-1;
         }
       `}</style>
     </div>

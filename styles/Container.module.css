@@ -1,0 +1,4 @@
+.container {
+  @apply border-2 border-blue-400 rounded-lg;
+  @apply p-3 mb-2;
+}
