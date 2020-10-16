@@ -8,39 +8,46 @@ const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 const Home = () => {
   const [pdfData, setPdfData] = useState<Uint8Array>(null);
   return (
-    <div>
+    <section className="contain">
       <Head>
         <title>GooseSplitter</title>
         <link rel="icon" href="/goose.png" />
       </Head>
-      <main>
-        <h1 className="title">GooseSplitter</h1>
-        <p>
-          A tool to conveniently split scanned PDFs into individual questions
-          for Crowdmark Submission
-        </p>
-        <section className="content">
+      <h1 className="title">GooseSplitter</h1>
+      <p>
+        A tool to conveniently split scanned PDFs into individual questions for
+        Crowdmark Submission
+      </p>
+      <section className="content">
+        <div className="left">
           <PDFZone data={pdfData} setData={setPdfData} />
           <FormatInput />
-          <Viewer data={pdfData} setData={setPdfData} />
-        </section>
-      </main>
+        </div>
+        <Viewer data={pdfData} setData={setPdfData} />
+      </section>
 
       <style jsx>{`
-        main {
+        .contain {
           @apply flex flex-col items-center;
+          @apply h-screen;
+          width: 100%;
         }
         .content {
           @apply mt-8;
-          @apply grid;
-          grid-gap: 1rem;
-          grid-template-columns: auto 15rem auto;
+          @apply flex flex-row;
+
+          width: 60%;
+          max-width: 1000px;
+        }
+        .content .left {
+          @apply mr-3;
+          @apply flex-initial;
         }
         .title {
           @apply font-mono text-4xl;
         }
       `}</style>
-    </div>
+    </section>
   );
 };
 
