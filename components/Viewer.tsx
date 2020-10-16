@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, memo, SetStateAction, useState } from "react";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/umd/Page/AnnotationLayer.css";
@@ -58,4 +58,6 @@ const Viewer = ({
   );
 };
 
-export default Viewer;
+const MemoViewer = memo(Viewer);
+
+export default MemoViewer;
