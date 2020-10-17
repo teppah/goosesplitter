@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.162",
+    "clsx": "^1.1.1",
     "jszip": "^3.5.0",
     "lodash": "^4.17.20",
     "next": "9.5.4",
