@@ -2,8 +2,9 @@
   @apply bg-purple-500 rounded px-2 py-1;
   @apply text-white;
   @apply font-bold;
+  background-color: #2685bf;
 }
 
 .btn:hover {
-  @apply bg-purple-600;
+  background-color: #144673;
 }

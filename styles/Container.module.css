@@ -2,4 +2,6 @@
   @apply border-dashed border-2 border-gray-400 rounded-lg;
   @apply bg-gray-200;
   @apply p-3 mb-2;
+
+  @apply flex flex-col items-center;
 }
