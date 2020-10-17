@@ -19,8 +19,15 @@ const FormatInput = ({
       <input type="text" value={formatString} onChange={handleChange} />
       <style jsx>{`
         input {
-          @apply border border-black px-1;
+          @apply text-base text-center;
+          @apply border-2 rounded-md border-gray-500 px-1;
+          @apply bg-gray-400;
           @apply font-mono;
+          @apply transition-all duration-100;
+        }
+        input:focus {
+          @apply border-gray-400;
+          @apply bg-gray-100;
         }
       `}</style>
     </div>
