@@ -14,6 +14,9 @@ const PDFZone = ({
 }) => {
   const [filename, setFilename] = useState("");
   const onDrop = useCallback(async (files: File[]) => {
+    if (files.length == 0) {
+      return;
+    }
     const first = files[0];
     let stream = await first.arrayBuffer();
     let newArray = new Uint8Array(stream);
@@ -23,6 +26,8 @@ const PDFZone = ({
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
     accept: ["application/pdf"],
+    noClick: true,
+    noKeyboard: true,
   });
 
   let zoneName = clsx({
@@ -31,7 +36,7 @@ const PDFZone = ({
     over: isDragActive,
   });
   return (
-    <div {...getRootProps()} className={zoneName}>
+    <div {...getRootProps({ className: zoneName })} className={zoneName}>
       <input {...getInputProps()}></input>
       {isDragActive ? (
         <p>Drop the PDF here</p>
