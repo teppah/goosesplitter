@@ -1,6 +1,8 @@
 import containerStyles from "styles/Container.module.css";
-import { PDFDocument } from "pdf-lib";
-import { downloadUint8ToPdf } from "util/download-file";
+import { PDFDocument, PDFPage } from "pdf-lib";
+import { downloadUint8ToFile } from "util/download-file";
+import sum from "lodash/sum";
+import range from "lodash/range";
 
 const DownloadWidget = ({
   formatString,
@@ -15,14 +17,23 @@ const DownloadWidget = ({
       .trim()
       .split(" ")
       .map((v) => Number(v));
-
+    const totalPages = sum(digits);
     const uploadedDoc = await PDFDocument.load(pdfData);
-    const newDoc = await PDFDocument.create();
-    const [firstPage] = await newDoc.copyPages(uploadedDoc, [0]);
-    newDoc.addPage(firstPage);
-    const newPdfBytes = await newDoc.save();
-
-    downloadUint8ToPdf(newPdfBytes, "file.pdf");
+    if (uploadedDoc.getPageCount() != totalPages) {
+      alert(
+        `wrong page count. string says ${totalPages} but pdf has ${uploadedDoc.getPageCount()}`
+      );
+      return;
+    }
+    const docs: PDFDocument[] = [];
+    let count = 0;
+    for (const i of digits) {
+      const newDoc = await PDFDocument.create();
+      const pages = await newDoc.copyPages(uploadedDoc, range(count, i));
+      docs.push(newDoc);
+      count += i;
+    }
+    console.log(docs);
   }
   return (
     <div className={containerStyles.container}>

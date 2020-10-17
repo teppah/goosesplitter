@@ -1,5 +1,8 @@
-export function downloadUint8ToPdf(data: Uint8Array, filename: string) {
-  const mimeType = "application/pdf";
+export function downloadUint8ToFile(
+  data: Uint8Array,
+  filename: string,
+  mimeType: string
+) {
   const blob = new Blob([data], { type: mimeType });
   const url = window.URL.createObjectURL(blob);
 
