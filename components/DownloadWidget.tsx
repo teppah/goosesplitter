@@ -3,6 +3,7 @@ import { PDFDocument, PDFPage } from "pdf-lib";
 import { downloadUint8ToFile } from "util/download-file";
 import sum from "lodash/sum";
 import range from "lodash/range";
+import JSZip from "jszip";
 
 const DownloadWidget = ({
   formatString,
@@ -25,15 +26,27 @@ const DownloadWidget = ({
       );
       return;
     }
-    const docs: PDFDocument[] = [];
+
+    const zipFile = new JSZip();
+
     let count = 0;
-    for (const i of digits) {
+    let index = 1;
+    let pdf: Uint8Array;
+    for (const nPages of digits) {
       const newDoc = await PDFDocument.create();
-      const pages = await newDoc.copyPages(uploadedDoc, range(count, i));
-      docs.push(newDoc);
-      count += i;
+      const pages = await newDoc.copyPages(
+        uploadedDoc,
+        range(count, count + nPages)
+      );
+      console.log(`${count}-${count + nPages}`);
+      const bytes = await newDoc.save();
+      zipFile.file(`${index}.pdf`, bytes);
+      count += nPages;
+      index++;
+      pdf = bytes;
     }
-    console.log(docs);
+    // const zipBytes = await zipFile.generateAsync({ type: "uint8array" });
+    downloadUint8ToFile(pdf, "files.pdf", "application/pdf");
   }
   return (
     <div className={containerStyles.container}>
