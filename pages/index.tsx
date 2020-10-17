@@ -27,7 +27,7 @@ const Home = () => {
             formatString={formatString}
             setFormatString={setFormatString}
           />
-          <DownloadWidget formatString={formatString} />
+          <DownloadWidget formatString={formatString} pdfData={pdfData} />
         </div>
         <Viewer data={pdfData} setData={setPdfData} />
       </section>
