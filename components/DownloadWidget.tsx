@@ -3,6 +3,7 @@ import { PDFDocument } from "pdf-lib";
 import { downloadUint8ToFile } from "util/download-file";
 import sum from "lodash/sum";
 import { getZipFromPdf } from "util/process-pdf";
+import btnStyles from "styles/Button.module.css";
 
 const DownloadWidget = ({
   formatString,
@@ -37,14 +38,10 @@ const DownloadWidget = ({
   return (
     <div className={containerStyles.container}>
       <h1>Your string: {formatString}</h1>
-      <button type="button" onClick={handleDownload}>
+      <button type="button" onClick={handleDownload} className={btnStyles.btn}>
         Download
       </button>
-      <style jsx>{`
-        button {
-          @apply border-blue-400 border-2 rounded px-2 py-1;
-        }
-      `}</style>
+      <style jsx>{``}</style>
     </div>
   );
 };

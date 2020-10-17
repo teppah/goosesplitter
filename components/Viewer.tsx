@@ -2,6 +2,8 @@ import { Dispatch, memo, SetStateAction, useState } from "react";
 import { Document, Page } from "react-pdf";
 import { pdfjs } from "react-pdf";
 import "react-pdf/dist/umd/Page/AnnotationLayer.css";
+import btnStyles from "styles/Button.module.css";
+
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const Viewer = ({
   data,
@@ -21,7 +23,11 @@ const Viewer = ({
   };
   return (
     <div className="pdf">
-      <button type="button" onClick={handleButtonClick}>
+      <button
+        type="button"
+        onClick={handleButtonClick}
+        className={btnStyles.btn}
+      >
         {hidden ? "Show" : "Hide"}
       </button>
       {!data && !hidden && (
@@ -41,9 +47,6 @@ const Viewer = ({
         </Document>
       )}
       <style jsx>{`
-        button {
-          @apply border-blue-400 border-2 rounded px-2 py-1;
-        }
         .doc {
         }
         .pdf {

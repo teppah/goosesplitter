@@ -15,7 +15,10 @@ const Home = () => {
         <title>GooseSplitter</title>
         <link rel="icon" href="/goose.png" />
       </Head>
-      <h1 className="title">GooseSplitter</h1>
+      <header>
+        <h1 className="title">GooseSplitter</h1>
+        <img src="/goose.png" alt="icon of a goose" />
+      </header>
       <p>
         A tool to conveniently split scanned PDFs into individual questions for
         Crowdmark Submission
@@ -33,6 +36,18 @@ const Home = () => {
       </section>
 
       <style jsx>{`
+        header {
+          @apply flex flex-row items-center;
+          @apply mt-2;
+        }
+        header img {
+          width: 45px;
+          @apply border-gray-500 border-2 border-dashed rounded-full;
+          @apply p-1;
+        }
+        .title {
+          @apply font-mono text-5xl;
+        }
         .layout {
           @apply flex flex-col items-center;
           @apply h-screen;
@@ -48,9 +63,6 @@ const Home = () => {
         .content .left {
           @apply mr-3;
           @apply flex-initial;
-        }
-        .title {
-          @apply font-mono text-4xl;
         }
       `}</style>
     </section>

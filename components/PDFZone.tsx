@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import containerStyles from "styles/Container.module.css";
+import btnStyles from "styles/Button.module.css";
 
 const PDFZone = ({
   data,
@@ -27,7 +28,7 @@ const PDFZone = ({
       ) : (
         <div>
           <p>Drag n drop here!</p>
-          <button type="button" onClick={open}>
+          <button type="button" onClick={open} className={btnStyles.btn}>
             Open
           </button>
         </div>
@@ -38,9 +39,6 @@ const PDFZone = ({
         }
         .dropzone {
           @apply p-4;
-        }
-        button {
-          @apply border-purple-400 border-2 rounded px-2 py-1;
         }
       `}</style>
     </div>
