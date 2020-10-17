@@ -4,6 +4,8 @@ import { downloadUint8ToFile } from "util/download-file";
 import sum from "lodash/sum";
 import { getZipFromPdf } from "util/process-pdf";
 import btnStyles from "styles/Button.module.css";
+import { useState } from "react";
+import Spinner from "./Spinner";
 
 const DownloadWidget = ({
   formatString,
@@ -12,7 +14,10 @@ const DownloadWidget = ({
   formatString: string;
   pdfData: Uint8Array;
 }) => {
+  const [isProcessing, setIsProcessing] = useState(false);
+
   async function handleDownload(e) {
+    setIsProcessing(true);
     e.preventDefault();
     const digits = formatString
       .trim()
@@ -33,15 +38,20 @@ const DownloadWidget = ({
       compression: "DEFLATE",
       compressionOptions: { level: 3 },
     });
+    setIsProcessing(false);
     downloadUint8ToFile(zipBytes, "files.zip", "application/zip");
   }
   return (
     <div className={containerStyles.container}>
       <h1>Your string: {formatString}</h1>
       <button type="button" onClick={handleDownload} className={btnStyles.btn}>
-        Download
+        {isProcessing ? <Spinner /> : "Download"}
       </button>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        button {
+          max-height: 2rem;
+        }
+      `}</style>
     </div>
   );
 };
