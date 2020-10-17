@@ -1,0 +1,9 @@
+.btn {
+  @apply bg-purple-500 rounded px-2 py-1;
+  @apply text-white;
+  @apply font-bold;
+}
+
+.btn:hover {
+  @apply bg-purple-600;
+}
