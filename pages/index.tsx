@@ -32,7 +32,9 @@ const Home = () => {
           />
           <DownloadWidget formatString={formatString} pdfData={pdfData} />
         </div>
-        <Viewer data={pdfData} setData={setPdfData} />
+        <div className="right">
+          <Viewer data={pdfData} setData={setPdfData} />
+        </div>
       </section>
 
       <style jsx>{`
@@ -58,11 +60,14 @@ const Home = () => {
           @apply flex flex-row;
 
           width: 60%;
-          max-width: 1000px;
+          max-width: 1500px;
         }
         .content .left {
           @apply mr-3;
           @apply flex-initial;
+        }
+        .content .right {
+          @apply flex-grow;
         }
       `}</style>
     </section>
