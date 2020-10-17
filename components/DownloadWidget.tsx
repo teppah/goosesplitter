@@ -31,22 +31,27 @@ const DownloadWidget = ({
 
     let count = 0;
     let index = 1;
-    let pdf: Uint8Array;
     for (const nPages of digits) {
       const newDoc = await PDFDocument.create();
       const pages = await newDoc.copyPages(
         uploadedDoc,
         range(count, count + nPages)
       );
+      for (const page of pages) {
+        newDoc.addPage(page);
+      }
       console.log(`${count}-${count + nPages}`);
       const bytes = await newDoc.save();
       zipFile.file(`${index}.pdf`, bytes);
       count += nPages;
       index++;
-      pdf = bytes;
     }
-    // const zipBytes = await zipFile.generateAsync({ type: "uint8array" });
-    downloadUint8ToFile(pdf, "files.pdf", "application/pdf");
+    const zipBytes = await zipFile.generateAsync({
+      type: "uint8array",
+      compression: "DEFLATE",
+      compressionOptions: { level: 3 },
+    });
+    downloadUint8ToFile(zipBytes, "files.zip", "application/zip");
   }
   return (
     <div className={containerStyles.container}>
