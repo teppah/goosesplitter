@@ -16,44 +16,45 @@ const Home = () => {
         <link rel="icon" href="/goose.png" />
       </Head>
       <header>
-        <h1 className="title">GooseSplitter</h1>
-        <img src="/goose.png" alt="icon of a goose" />
+        <div>
+          <h1 className="title">GooseSplitter</h1>
+          <img src="/goose.png" alt="icon of a goose" />
+        </div>
+        <p>Split your PDFs for Crowdmark Submission</p>
       </header>
-      <p>
-        A tool to conveniently split scanned PDFs into individual questions for
-        Crowdmark Submission
-      </p>
-      <section className="content">
-        <div className="left">
-          <PDFZone data={pdfData} setData={setPdfData} />
-          <FormatInput
-            formatString={formatString}
-            setFormatString={setFormatString}
-          />
-          <DownloadWidget formatString={formatString} pdfData={pdfData} />
-        </div>
-        <div className="right">
-          <Viewer data={pdfData} setData={setPdfData} />
-        </div>
-      </section>
+      <PDFZone data={pdfData} setData={setPdfData} />
+      <Viewer data={pdfData} setData={setPdfData} />
+      <FormatInput
+        formatString={formatString}
+        setFormatString={setFormatString}
+      />
+      <DownloadWidget formatString={formatString} pdfData={pdfData} />
 
       <style jsx>{`
         header {
-          @apply flex flex-row items-center;
-          @apply mt-2;
+          height: 30vh;
+          @apply flex flex-col items-stretch justify-end;
+        }
+        header div {
+          @apply flex flex-row justify-center;
         }
         header img {
-          width: 45px;
+          width: 35px;
           @apply border-gray-500 border-2 border-dashed rounded-full;
           @apply p-1;
         }
         .title {
-          @apply font-mono text-5xl;
+          @apply font-mono text-3xl;
+        }
+        p {
+          @apply text-center;
+          @apply mb-4;
         }
         .layout {
-          @apply flex flex-col items-center;
+          @apply flex flex-col items-stretch;
           @apply h-screen;
-          width: 100%;
+          @apply px-5;
+          @apply w-full;
         }
         .content {
           @apply mt-8;
@@ -61,13 +62,6 @@ const Home = () => {
 
           width: 60%;
           max-width: 1500px;
-        }
-        .content .left {
-          @apply mr-3;
-          @apply flex-initial;
-        }
-        .content .right {
-          @apply flex-grow;
         }
       `}</style>
     </section>

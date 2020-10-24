@@ -16,18 +16,22 @@ const FormatInput = ({
   return (
     <div className={containerStyles.container}>
       <h2>Enter your desired format</h2>
-      <input type="text" value={formatString} onChange={handleChange} />
+      <input
+        type="text"
+        value={formatString}
+        onChange={handleChange}
+        placeholder="# # # #"
+      />
       <style jsx>{`
         input {
           @apply text-base text-center;
-          @apply border-2 rounded-md border-gray-500 px-1;
-          @apply bg-gray-400;
+          @apply border-2 rounded-md border-gray-400 px-1;
           @apply font-mono;
           @apply transition-all duration-100;
         }
         input:focus {
-          @apply border-gray-400;
-          @apply bg-gray-100;
+          @apply border-blue-400;
+          @apply shadow-sm;
         }
       `}</style>
     </div>
