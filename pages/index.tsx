@@ -20,12 +20,16 @@ const Home = () => {
         </div>
         <p>Split your PDFs for Crowdmark Submission</p>
       </header>
-      <PDFZone data={pdfData} setData={setPdfData} />
-      <FormatInput
-        formatString={formatString}
-        setFormatString={setFormatString}
-      />
-      <DownloadWidget formatString={formatString} pdfData={pdfData} />
+      <div className="content">
+        <PDFZone data={pdfData} setData={setPdfData} />
+        <div>
+          <FormatInput
+            formatString={formatString}
+            setFormatString={setFormatString}
+          />
+          <DownloadWidget formatString={formatString} pdfData={pdfData} />
+        </div>
+      </div>
 
       <style jsx>{`
         header {
@@ -48,17 +52,25 @@ const Home = () => {
           @apply mb-4;
         }
         .layout {
-          @apply flex flex-col items-stretch;
+          @apply flex flex-col items-center;
           @apply h-screen;
           @apply px-5;
           @apply w-full;
         }
         .content {
-          @apply mt-8;
-          @apply flex flex-row;
-
-          width: 60%;
-          max-width: 1500px;
+          @apply flex flex-col items-stretch;
+          @apply w-full;
+          max-width: 1000px;
+        }
+        .content > div {
+          @apply flex flex-col items-stretch;
+        }
+        @screen lg {
+          .content > div {
+            @apply grid;
+            @apply gap-x-4;
+            grid-template-columns: 1fr 1fr;
+          }
         }
       `}</style>
     </section>

@@ -58,6 +58,9 @@ const PDFZone = ({
       </button>
       <Viewer data={data} setData={setData} />
       <style jsx>{`
+        .zone {
+          @apply bg-gray-100;
+        }
         h1 {
           @apply font-serif;
         }
