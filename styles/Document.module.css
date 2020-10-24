@@ -1,9 +1,9 @@
 .document {
-  @apply flex flex-row flex-no-wrap;
-  @apply justify-center;
-  @apply overflow-x-auto;
-  @apply w-full;
+  @apply flex flex-row flex-wrap justify-center;
+  @apply overflow-y-auto;
   @apply pb-4;
+  @apply w-full;
+  max-height: 12rem;
 }
 
 .page {

@@ -46,13 +46,8 @@ const PDFZone = ({
   return (
     <div {...getRootProps({ className: zoneName })} className={zoneName}>
       <input {...getInputProps()}></input>
-      {isDragActive ? (
-        <p>Drop the PDF here</p>
-      ) : (
-        <div>
-          <p>Drag your PDF here</p>
-        </div>
-      )}
+      {isDragActive ? <h1>Drop the PDF here</h1> : <h1>Drag your PDF here</h1>}
+      <hr />
       <button type="button" onClick={open} className={btnStyles.btn}>
         {filename || "Open"}
       </button>
@@ -60,15 +55,24 @@ const PDFZone = ({
       <style jsx>{`
         .zone {
           @apply bg-gray-100;
+          min-height: 12rem;
+          max-height: 20rem;
+          @apply transition-all;
+          @apply duration-150;
         }
         h1 {
-          @apply font-serif;
+          @apply font-sans;
+          @apply text-xl;
+        }
+        hr {
+          @apply mt-1 mb-2;
+          @apply w-full;
         }
         .zone > div {
           @apply mb-1;
         }
         .over {
-          @apply bg-gray-400;
+          @apply bg-gray-200;
           @apply border-solid border-gray-500;
         }
         button {

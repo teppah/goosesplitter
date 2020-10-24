@@ -68,8 +68,9 @@ const Home = () => {
         @screen lg {
           .content > div {
             @apply grid;
-            @apply gap-x-4;
+            @apply gap-x-2;
             grid-template-columns: 1fr 1fr;
+            min-height: 8rem;
           }
         }
       `}</style>

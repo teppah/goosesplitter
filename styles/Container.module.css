@@ -3,5 +3,5 @@
   /* @apply bg-gray-200; */
   @apply p-3 mb-2;
 
-  @apply flex flex-col items-center;
+  @apply flex flex-col items-center justify-center;
 }
