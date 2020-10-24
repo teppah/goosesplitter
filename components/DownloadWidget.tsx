@@ -5,7 +5,6 @@ import sum from "lodash/sum";
 import { getZipFromPdf } from "util/process-pdf";
 import btnStyles from "styles/Button.module.css";
 import { useState } from "react";
-import Spinner from "./Spinner";
 
 const DownloadWidget = ({
   formatString,
@@ -17,6 +16,9 @@ const DownloadWidget = ({
   const [isProcessing, setIsProcessing] = useState(false);
 
   async function handleDownload(e) {
+    if (!pdfData) {
+      return;
+    }
     setIsProcessing(true);
     e.preventDefault();
     const digits = formatString
@@ -29,6 +31,7 @@ const DownloadWidget = ({
       alert(
         `wrong page count. string says ${totalPages} but pdf has ${uploadedDoc.getPageCount()}`
       );
+      setIsProcessing(false);
       return;
     }
 
@@ -45,11 +48,15 @@ const DownloadWidget = ({
     <div className={containerStyles.container}>
       <h1>Your string: {formatString}</h1>
       <button type="button" onClick={handleDownload} className={btnStyles.btn}>
-        {isProcessing ? <Spinner /> : "Download"}
+        {isProcessing ? "Processing..." : "Download"}
       </button>
       <style jsx>{`
         button {
           max-height: 2rem;
+          ${!pdfData && "cursor: not-allowed; background-color: gray;"}
+        }
+        button:hover {
+          ${!pdfData && "background-color: gray;"}
         }
       `}</style>
     </div>

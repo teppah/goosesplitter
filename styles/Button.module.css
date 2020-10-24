@@ -6,6 +6,7 @@
   @apply font-semibold;
   @apply w-32;
   @apply transition-colors duration-150;
+  @apply outline-none;
 }
 
 .btn:hover {
