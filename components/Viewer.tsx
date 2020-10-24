@@ -1,8 +1,9 @@
 import { Dispatch, memo, SetStateAction, useState } from "react";
-import { Document, Page } from "react-pdf";
-import { pdfjs } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";
 import "react-pdf/dist/umd/Page/AnnotationLayer.css";
 import btnStyles from "styles/Button.module.css";
+import documentStyles from "styles/Document.module.css";
+import clsx from "clsx";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 const Viewer = ({
@@ -21,8 +22,9 @@ const Viewer = ({
     e.preventDefault();
     setHidden(!hidden);
   };
+  const containerName = clsx("pdf");
   return (
-    <div className="pdf">
+    <div className={containerName}>
       <button
         type="button"
         onClick={handleButtonClick}
@@ -36,37 +38,29 @@ const Viewer = ({
         </div>
       )}
       {data && !hidden && (
-        <Document file={{ data }} onLoadSuccess={onLoadSuccess}>
-          <div className="doc">
-            {Array.from(new Array(numPages), (el, index) => {
-              return (
-                <div className="page-wrapper">
-                  <Page
-                    key={index + 1}
-                    pageNumber={index + 1}
-                    className="page"
-                    width={300}
-                    renderTextLayer={false}
-                  />
-                </div>
-              );
-            })}
-          </div>
+        <Document
+          file={{ data }}
+          onLoadSuccess={onLoadSuccess}
+          className={documentStyles.document}
+        >
+          {Array.from(new Array(numPages), (el, index) => {
+            return (
+              <Page
+                key={index + 1}
+                pageNumber={index + 1}
+                width={200}
+                renderTextLayer={false}
+                className={documentStyles.page}
+              />
+            );
+          })}
         </Document>
       )}
       <style jsx>{`
-        .doc {
-          @apply grid;
-          grid-template-columns: repeat(auto-fit, 300px);
-        }
         .pdf {
-          @apply flex flex-col items-stretch;
-        }
-        .page-wrapper {
-          @apply shadow;
-          @apply mb-1;
-        }
-        .page {
+          @apply flex flex-col items-center;
+          @apply mb-3;
+          @apply px-0;
         }
       `}</style>
     </div>

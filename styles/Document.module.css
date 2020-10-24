@@ -1,0 +1,11 @@
+.document {
+  @apply flex flex-row flex-no-wrap;
+  @apply justify-center;
+  @apply overflow-x-auto;
+  width: 100%;
+}
+
+.page {
+  @apply m-1;
+  @apply border border-gray-400;
+}
