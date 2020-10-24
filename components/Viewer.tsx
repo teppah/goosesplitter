@@ -30,11 +30,11 @@ const Viewer = ({
         onClick={handleButtonClick}
         className={btnStyles.btn}
       >
-        {hidden ? "Show" : "Hide"}
+        {hidden ? "Show Preview" : "Hide Preview"}
       </button>
       {!data && !hidden && (
         <div>
-          <h1>Preview will show up here...</h1>
+          <h1>Document preview will show up here...</h1>
         </div>
       )}
       {data && !hidden && (

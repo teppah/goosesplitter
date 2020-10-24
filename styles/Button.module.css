@@ -1,10 +1,13 @@
 .btn {
-  @apply bg-purple-500 rounded px-2 py-1;
+  background-color: #33bf26;
+  @apply px-2 py-1;
+  @apply rounded-full;
   @apply text-white;
-  @apply font-bold;
-  background-color: #2685bf;
+  @apply font-semibold;
+  @apply w-32;
+  @apply transition-all duration-150;
 }
 
 .btn:hover {
-  background-color: #144673;
+  background-color: #14733c;
 }

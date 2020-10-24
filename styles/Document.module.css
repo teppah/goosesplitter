@@ -3,6 +3,7 @@
   @apply justify-center;
   @apply overflow-x-auto;
   width: 100%;
+  @apply pb-4;
 }
 
 .page {

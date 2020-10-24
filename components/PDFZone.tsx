@@ -21,7 +21,13 @@ const PDFZone = ({
     let stream = await first.arrayBuffer();
     let newArray = new Uint8Array(stream);
     setData(newArray);
-    setFilename(first.name);
+    let filename = "";
+    if (first.name.length > 16) {
+      filename = first.name.slice(0, 13).trim() + "...";
+    } else {
+      filename = first.name;
+    }
+    setFilename(filename);
   }, []);
   const { getRootProps, getInputProps, isDragActive, open } = useDropzone({
     onDrop,
