@@ -4,4 +4,5 @@
   @apply p-3 mb-2;
 
   @apply flex flex-col items-center;
+  @apply w-full;
 }

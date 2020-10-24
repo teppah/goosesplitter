@@ -14,7 +14,7 @@ const Viewer = ({
   setData: Dispatch<SetStateAction<Uint8Array>>;
 }) => {
   const [numPages, setNumPages] = useState<number>(null);
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(false);
   const onLoadSuccess = (pdf: pdfjs.PDFDocumentProxy) => {
     setNumPages(pdf.numPages);
   };
@@ -25,13 +25,13 @@ const Viewer = ({
   const containerName = clsx("pdf");
   return (
     <div className={containerName}>
-      <button
+      {/* <button
         type="button"
         onClick={handleButtonClick}
         className={btnStyles.btn}
       >
         {hidden ? "Show Preview" : "Hide Preview"}
-      </button>
+      </button> */}
       {!data && !hidden && (
         <div>
           <h1>Document preview will show up here...</h1>
@@ -59,8 +59,8 @@ const Viewer = ({
       <style jsx>{`
         .pdf {
           @apply flex flex-col items-center;
-          @apply mb-3;
           @apply px-0;
+          @apply w-full;
         }
       `}</style>
     </div>

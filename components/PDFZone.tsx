@@ -1,9 +1,11 @@
 import { Dispatch, SetStateAction, useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import clsx from "clsx";
+const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 
 import containerStyles from "styles/Container.module.css";
 import btnStyles from "styles/Button.module.css";
+import dynamic from "next/dynamic";
 
 const PDFZone = ({
   data,
@@ -54,6 +56,7 @@ const PDFZone = ({
       <button type="button" onClick={open} className={btnStyles.btn}>
         {filename || "Open"}
       </button>
+      <Viewer data={data} setData={setData} />
       <style jsx>{`
         h1 {
           @apply font-serif;
@@ -64,6 +67,9 @@ const PDFZone = ({
         .over {
           @apply bg-gray-400;
           @apply border-solid border-gray-500;
+        }
+        button {
+          @apply mb-2;
         }
       `}</style>
     </div>

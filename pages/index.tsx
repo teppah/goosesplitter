@@ -1,10 +1,8 @@
 import Head from "next/head";
 import PDFZone from "components/PDFZone";
-import dynamic from "next/dynamic";
 import { useState } from "react";
 import FormatInput from "components/FormatInput";
 import DownloadWidget from "components/DownloadWidget";
-const Viewer = dynamic(() => import("components/Viewer"), { ssr: false });
 
 const Home = () => {
   const [pdfData, setPdfData] = useState<Uint8Array>(null);
@@ -23,7 +21,6 @@ const Home = () => {
         <p>Split your PDFs for Crowdmark Submission</p>
       </header>
       <PDFZone data={pdfData} setData={setPdfData} />
-      <Viewer data={pdfData} setData={setPdfData} />
       <FormatInput
         formatString={formatString}
         setFormatString={setFormatString}

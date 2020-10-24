@@ -2,7 +2,7 @@
   @apply flex flex-row flex-no-wrap;
   @apply justify-center;
   @apply overflow-x-auto;
-  width: 100%;
+  @apply w-full;
   @apply pb-4;
 }
 
