@@ -47,7 +47,6 @@ const FormatInput = ({
           @apply text-base text-center;
           @apply border-2 rounded-md border-gray-400 px-1;
           @apply font-mono;
-          @apply transition-all duration-100;
         }
         input:focus {
           @apply border-blue-400;

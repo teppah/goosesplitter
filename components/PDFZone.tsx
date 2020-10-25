@@ -57,8 +57,6 @@ const PDFZone = ({
           @apply bg-gray-100;
           min-height: 12rem;
           max-height: 20rem;
-          @apply transition-all;
-          @apply duration-150;
         }
         h2 {
           font-family: "Titillium Web", sans-serif;
