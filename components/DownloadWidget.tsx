@@ -48,7 +48,7 @@ const DownloadWidget = ({
   }
   return (
     <div className={containerStyles.container}>
-      <h1>Your format: {formatString}</h1>
+      <h2>Your format: {formatString}</h2>
       <hr />
       <button type="button" onClick={handleDownload} className={btnStyles.btn}>
         {isProcessing ? "Processing..." : "Download"}
@@ -63,7 +63,9 @@ const DownloadWidget = ({
           @apply w-full;
           @apply mt-1 mb-2;
         }
-        h1 {
+        h2 {
+          font-family: "Titillium Web", sans-serif;
+          @apply font-semibold;
           @apply text-lg;
         }
         button:hover {

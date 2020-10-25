@@ -55,6 +55,8 @@ const FormatInput = ({
         }
         h2 {
           @apply text-lg;
+          @apply font-semibold;
+          font-family: "Titillium Web", sans-serif;
         }
         hr {
           @apply w-full;

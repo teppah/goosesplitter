@@ -59,7 +59,9 @@ const Home = () => {
           }
         }
         .title {
-          @apply font-mono text-3xl;
+          @apply text-3xl;
+          @apply font-bold;
+          font-family: "Titillium Web", sans-serif;
         }
         @screen lg {
           .title {

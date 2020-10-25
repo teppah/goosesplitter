@@ -46,7 +46,7 @@ const PDFZone = ({
   return (
     <div {...getRootProps({ className: zoneName })} className={zoneName}>
       <input {...getInputProps()}></input>
-      {isDragActive ? <h1>Drop the PDF here</h1> : <h1>Drag your PDF here</h1>}
+      {isDragActive ? <h2>Drop the PDF here</h2> : <h2>Drag your PDF here</h2>}
       <hr />
       <button type="button" onClick={open} className={btnStyles.btn}>
         {filename || "Open"}
@@ -60,8 +60,9 @@ const PDFZone = ({
           @apply transition-all;
           @apply duration-150;
         }
-        h1 {
-          @apply font-sans;
+        h2 {
+          font-family: "Titillium Web", sans-serif;
+          @apply font-semibold;
           @apply text-lg;
         }
         hr {
