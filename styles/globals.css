@@ -2,5 +2,11 @@ html,
 body {
   padding: 0;
   margin: 0;
-  @apply font-sans;
+  font-family: Dosis, sans-serif;
+  font-size: large;
+}
+@screen lg {
+  body {
+    font-size: larger;
+  }
 }
