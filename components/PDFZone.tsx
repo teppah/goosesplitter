@@ -62,7 +62,7 @@ const PDFZone = ({
         }
         h1 {
           @apply font-sans;
-          @apply text-xl;
+          @apply text-lg;
         }
         hr {
           @apply mt-1 mb-2;

@@ -9,14 +9,16 @@ import { useState } from "react";
 const DownloadWidget = ({
   formatString,
   pdfData,
+  isValidFormat,
 }: {
   formatString: string;
   pdfData: Uint8Array;
+  isValidFormat: boolean;
 }) => {
   const [isProcessing, setIsProcessing] = useState(false);
 
   async function handleDownload(e) {
-    if (!pdfData) {
+    if (!pdfData || !isValidFormat) {
       return;
     }
     setIsProcessing(true);
@@ -46,17 +48,26 @@ const DownloadWidget = ({
   }
   return (
     <div className={containerStyles.container}>
-      <h1>Your string: {formatString}</h1>
+      <h1>Your format: {formatString}</h1>
+      <hr />
       <button type="button" onClick={handleDownload} className={btnStyles.btn}>
         {isProcessing ? "Processing..." : "Download"}
       </button>
       <style jsx>{`
         button {
           max-height: 2rem;
-          ${!pdfData && "cursor: not-allowed; background-color: gray;"}
+          ${(!pdfData || !isValidFormat) &&
+          "cursor: not-allowed; background-color: gray;"}
+        }
+        hr {
+          @apply w-full;
+          @apply mt-1 mb-2;
+        }
+        h1 {
+          @apply text-lg;
         }
         button:hover {
-          ${!pdfData && "background-color: gray;"}
+          ${(!pdfData || !isValidFormat) && "background-color: gray;"}
         }
       `}</style>
     </div>

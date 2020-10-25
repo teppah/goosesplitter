@@ -7,6 +7,7 @@ import DownloadWidget from "components/DownloadWidget";
 const Home = () => {
   const [pdfData, setPdfData] = useState<Uint8Array>(null);
   const [formatString, setFormatString] = useState<string>(null);
+  const [isValidFormat, setIsValidFormat] = useState(false);
   return (
     <section className="layout">
       <Head>
@@ -26,8 +27,14 @@ const Home = () => {
           <FormatInput
             formatString={formatString}
             setFormatString={setFormatString}
+            isValidFormat={isValidFormat}
+            setIsValidFormat={setIsValidFormat}
           />
-          <DownloadWidget formatString={formatString} pdfData={pdfData} />
+          <DownloadWidget
+            formatString={formatString}
+            pdfData={pdfData}
+            isValidFormat={isValidFormat}
+          />
         </div>
       </div>
 
@@ -37,19 +44,36 @@ const Home = () => {
           @apply flex flex-col items-stretch justify-end;
         }
         header div {
-          @apply flex flex-row justify-center;
+          @apply flex flex-row justify-center items-center;
         }
         header img {
           width: 35px;
+          height: 35px;
           @apply border-gray-500 border-2 border-dashed rounded-full;
           @apply p-1;
+        }
+        @screen lg {
+          header img {
+            width: 55px;
+            height: 55px;
+          }
         }
         .title {
           @apply font-mono text-3xl;
         }
+        @screen lg {
+          .title {
+            @apply text-5xl;
+          }
+        }
         p {
           @apply text-center;
           @apply mb-4;
+        }
+        @screen lg {
+          p {
+            @apply text-2xl;
+          }
         }
         .layout {
           @apply flex flex-col items-center;

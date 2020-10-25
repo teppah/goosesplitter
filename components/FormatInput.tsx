@@ -4,24 +4,31 @@ import containerStyles from "styles/Container.module.css";
 const FormatInput = ({
   formatString,
   setFormatString,
+  isValidFormat,
+  setIsValidFormat,
 }: {
   formatString: string;
   setFormatString: Dispatch<SetStateAction<string>>;
+  isValidFormat: boolean;
+  setIsValidFormat: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [legal, setLegal] = useState(true);
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const legalCharacters = /[0-9 ]+/g;
     const match = e.target.value.match(legalCharacters);
-    console.log(match);
+    // has extra illegal characters
     if (match && match[0] != e.target.value) {
-      setLegal(false);
+      setIsValidFormat(false);
     } else {
-      setLegal(true);
+      // empty string
+      if (e.target.value === "") {
+        setIsValidFormat(false);
+      } else {
+        setIsValidFormat(true);
+      }
     }
     setFormatString(e.target.value);
   };
-  console.log(legal);
   return (
     <div className={containerStyles.container}>
       <h2>Enter your desired format</h2>
@@ -32,7 +39,7 @@ const FormatInput = ({
         onChange={handleChange}
         placeholder="# # # #"
       />
-      {!legal && (
+      {!isValidFormat && (
         <h3 className="error">Can only contain numbers 0-9 and spaces</h3>
       )}
       <style jsx>{`
@@ -47,7 +54,7 @@ const FormatInput = ({
           @apply shadow-sm;
         }
         h2 {
-          @apply text-xl;
+          @apply text-lg;
         }
         hr {
           @apply w-full;
